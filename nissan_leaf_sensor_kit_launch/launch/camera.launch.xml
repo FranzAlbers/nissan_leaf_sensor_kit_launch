@@ -4,6 +4,10 @@
 
   <group>
     <push-ros-namespace namespace="camera"/>
+
+    <include file="$(find-pkg-share flir_spinnaker_ros2)/launch/camera_front_rst.launch.py"/>
+    <!--include file="$(find-pkg-share flir_spinnaker_ros2)/launch/camera_rear_rst.launch.py"/> Currently only one camera node possible--> 
+
     <group>
       <push-ros-namespace namespace="traffic_light"/>
 
