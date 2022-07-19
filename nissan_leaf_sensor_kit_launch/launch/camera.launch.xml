@@ -5,7 +5,14 @@
   <group>
     <push-ros-namespace namespace="camera"/>
 
-    <include file="$(find-pkg-share flir_spinnaker_ros2)/launch/camera_front_rst.launch.py"/>
+    <group>
+      <push-ros-namespace namespace="camera_front"/>
+      <include file="$(find-pkg-share flir_spinnaker_ros2)/launch/camera_front_rst.launch.py"/>
+
+      <node pkg="image_proc" exec="image_proc" name="image_proc" output="screen">
+        <remap from="image" to="image_raw"/>
+      </node>
+    </group>
     <!--include file="$(find-pkg-share flir_spinnaker_ros2)/launch/camera_rear_rst.launch.py"/> Currently only one camera node possible--> 
 
     <group>

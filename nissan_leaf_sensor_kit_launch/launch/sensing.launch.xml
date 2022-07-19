@@ -5,6 +5,8 @@
   <arg name="pointcloud_container_name" default="pointcloud_container"/>
 
   <group>
+    <push-ros-namespace namespace="sensing"/>
+
     <!-- LiDAR Driver -->
     <include file="$(find-pkg-share nissan_leaf_sensor_kit_launch)/launch/lidar.launch.xml">
       <arg name="launch_driver" value="$(var launch_driver)"/>
