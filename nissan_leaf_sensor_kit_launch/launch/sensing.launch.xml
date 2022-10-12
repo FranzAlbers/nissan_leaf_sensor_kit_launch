@@ -27,6 +27,11 @@
       <arg name="launch_driver" value="$(var launch_driver)"/>
     </include>
 
+    <!-- CAN Driver -->
+    <include file="$(find-pkg-share nissan_leaf_sensor_kit_launch)/launch/can_bus.launch.xml">
+      <arg name="launch_driver" value="$(var launch_driver)"/>
+    </include>
+
     <!-- Vehicle Velocity Converter  -->
     <include file="$(find-pkg-share vehicle_velocity_converter)/launch/vehicle_velocity_converter.launch.xml">
       <arg name="input_vehicle_velocity_topic" value="/vehicle/status/velocity_status"/>

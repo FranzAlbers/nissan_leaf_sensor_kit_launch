@@ -1,0 +1,38 @@
+<launch>
+  <arg name="launch_driver" default="true"/>
+
+  <group>
+
+    <group>
+      <!-- Radar Private CAN (PCAN) Bus -->
+      <!-- Currently no CAN FD Support, which is required for the Private CAN of the Radar Sensors on can0 and can1
+      <include file="$(find-pkg-share ros2_socketcan)/launch/socket_can_bridge.launch.xml" if="$(var launch_driver)">
+        <arg name="interface" value="can0"/>
+      </include>
+
+      <include file="$(find-pkg-share ros2_socketcan)/launch/socket_can_bridge.launch.xml" if="$(var launch_driver)">
+        <arg name="interface" value="can2"/> Franz: To be changed to can1 once the Radar Private CAN is available?
+      </include> -->
+
+      <!-- Mobileye Camera CAN Bus-->
+      <include file="$(find-pkg-share ros2_socketcan)/launch/socket_can_bridge.launch.xml" if="$(var launch_driver)">
+        <arg name="interface" value="can1"/> <!-- Franz: To be changed to can2 once the Radar Private CAN is available?--> 
+      </include>
+      
+      <!-- Vehicle CAN Bus-->
+      <include file="$(find-pkg-share ros2_socketcan)/launch/socket_can_bridge.launch.xml" if="$(var launch_driver)">
+        <arg name="interface" value="can3"/>
+      </include>
+
+      <!-- Radar Vehicle CAN (VCAN) Bus-->
+      <include file="$(find-pkg-share ros2_socketcan)/launch/socket_can_bridge.launch.xml" if="$(var launch_driver)">
+        <arg name="interface" value="can4"/>
+      </include>
+
+    </group>
+
+    <!-- Bridge Vehicle CAN Messages to Radar VCAN -->
+    <node pkg="vehicle_to_radar_can_bridge" exec="vehicle_to_radar_can_bridge" name="vehicle_to_radar_can_bridge" output="screen"/>
+
+  </group>
+</launch>
