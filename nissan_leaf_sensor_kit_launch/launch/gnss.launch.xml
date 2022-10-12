@@ -3,7 +3,7 @@
   <arg name="coordinate_system" default="1" description="0:UTM, 1:MGRS, 2:PLANE"/>
 
   <group>
-    <push-ros-namespace namespace="gnss"/>
+    <push-ros-namespace namespace="/sensing/gnss"/>
 
     <!-- Switch topic name -->
     <let name="navsatfix_topic_name" value="adma/nav_sat_fix"/>
@@ -25,6 +25,7 @@
       <arg name="use_ublox_receiver" value="false"/>
 
       <arg name="gnss_frame" value="adma/gnss_link"/>
+      <arg name="gnss_base_frame" value="base_link"/>
     </include>
   </group>
 </launch>
