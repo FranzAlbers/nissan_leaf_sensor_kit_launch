@@ -7,6 +7,7 @@
     <xacro:include filename="$(find imu_description)/urdf/imu.xacro"/>
     <xacro:include filename="$(find ouster_description)/urdf/OS1-64.urdf.xacro"/>
     <xacro:include filename="$(find ouster_description)/urdf/OS2-64.urdf.xacro"/>
+    <xacro:include filename="$(find radar_description)/urdf/radar.xacro"/>
 
     <xacro:arg name="gpu" default="false"/>
     <xacro:arg name="config_dir" default="$(find nissan_leaf_sensor_kit_description)/config"/>
@@ -19,6 +20,17 @@
       <child link="${sensor_kit_base_link}"/>
     </joint>
     <link name="${sensor_kit_base_link}">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </link>
+
+    <xacro:property name="front_axle_center_link" default="front_axle_center_link"/>
+
+    <joint name="${front_axle_center_link}_joint" type="fixed">
+      <origin rpy="0 0 0" xyz="2.7 0 0.29"/>
+      <parent link="base_link"/>
+      <child link="${front_axle_center_link}"/>
+    </joint>
+    <link name="${front_axle_center_link}">
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </link>
 
@@ -180,7 +192,7 @@
       roll="${calibration['sensor_kit_base_link']['adma/gnss_link']['roll']}"
       pitch="${calibration['sensor_kit_base_link']['adma/gnss_link']['pitch']}"
       yaw="${calibration['sensor_kit_base_link']['adma/gnss_link']['yaw']}"
-      fps="100"
+      fps="500"
     />
 
     <!-- imu -->
@@ -194,7 +206,56 @@
       roll="${calibration['adma/gnss_link']['adma/imu_link']['roll']}"
       pitch="${calibration['adma/gnss_link']['adma/imu_link']['pitch']}"
       yaw="${calibration['adma/gnss_link']['adma/imu_link']['yaw']}"
-      fps="100"
+      fps="500"
     /> 
+
+    <!-- radar -->
+    <xacro:radar_macro
+      name="radar_front_left/base_link"
+      parent="front_axle_center_link"
+      namespace=""
+      x="${calibration['front_axle_center_link']['radar_front_left/base_link']['x']}"
+      y="${calibration['front_axle_center_link']['radar_front_left/base_link']['y']}"
+      z="${calibration['front_axle_center_link']['radar_front_left/base_link']['z']}"
+      roll="${calibration['front_axle_center_link']['radar_front_left/base_link']['roll']}"
+      pitch="${calibration['front_axle_center_link']['radar_front_left/base_link']['pitch']}"
+      yaw="${calibration['front_axle_center_link']['radar_front_left/base_link']['yaw']}"
+    />
+
+    <xacro:radar_macro
+      name="radar_front_right/base_link"
+      parent="front_axle_center_link"
+      namespace=""
+      x="${calibration['front_axle_center_link']['radar_front_right/base_link']['x']}"
+      y="${calibration['front_axle_center_link']['radar_front_right/base_link']['y']}"
+      z="${calibration['front_axle_center_link']['radar_front_right/base_link']['z']}"
+      roll="${calibration['front_axle_center_link']['radar_front_right/base_link']['roll']}"
+      pitch="${calibration['front_axle_center_link']['radar_front_right/base_link']['pitch']}"
+      yaw="${calibration['front_axle_center_link']['radar_front_right/base_link']['yaw']}"
+    />
+
+    <xacro:radar_macro
+      name="radar_rear_left/base_link"
+      parent="front_axle_center_link"
+      namespace=""
+      x="${calibration['front_axle_center_link']['radar_rear_left/base_link']['x']}"
+      y="${calibration['front_axle_center_link']['radar_rear_left/base_link']['y']}"
+      z="${calibration['front_axle_center_link']['radar_rear_left/base_link']['z']}"
+      roll="${calibration['front_axle_center_link']['radar_rear_left/base_link']['roll']}"
+      pitch="${calibration['front_axle_center_link']['radar_rear_left/base_link']['pitch']}"
+      yaw="${calibration['front_axle_center_link']['radar_rear_left/base_link']['yaw']}"
+    />
+
+    <xacro:radar_macro
+      name="radar_rear_right/base_link"
+      parent="front_axle_center_link"
+      namespace=""
+      x="${calibration['front_axle_center_link']['radar_rear_right/base_link']['x']}"
+      y="${calibration['front_axle_center_link']['radar_rear_right/base_link']['y']}"
+      z="${calibration['front_axle_center_link']['radar_rear_right/base_link']['z']}"
+      roll="${calibration['front_axle_center_link']['radar_rear_right/base_link']['roll']}"
+      pitch="${calibration['front_axle_center_link']['radar_rear_right/base_link']['pitch']}"
+      yaw="${calibration['front_axle_center_link']['radar_rear_right/base_link']['yaw']}"
+    />
   </xacro:macro>
 </robot>
