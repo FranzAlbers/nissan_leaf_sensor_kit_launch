@@ -6,7 +6,7 @@ base_link:
     roll: 0.0
     pitch: 0.0
     yaw: 0.0
-  front_axis_center_link:
+  front_axle_center_link:
     x: 2.7
     y: 0.0
     z: 0.29
