@@ -8,12 +8,12 @@
   <group>
     <push-ros-namespace namespace="lidar"/>
 
-    <group>
+    <!--group>
       <push-ros-namespace namespace="os1"/>
       <include file="$(find-pkg-share ros2_ouster)/launch/driver_os1_rst_launch.py">
         <arg name="launch_driver" value="$(var launch_driver)"/>
       </include>
-    </group>
+    </group-->
 
     <group>
       <push-ros-namespace namespace="os2"/>
